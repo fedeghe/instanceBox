@@ -1,0 +1,12 @@
+{
+	"EXE" : [
+		"rm -rf lib test *.js *.html",
+		"mkdir -p lib test/css"
+	],
+	"source/lib/instanceBox.js" : "lib",
+	"source/index.html" : ". -plugins=malta-browser-refresh[files:\"*\"] -options=showPath:false",
+	"source/html/*.html" : "test -plugins=malta-browser-refresh[files:\"*\"]",
+	"source/test/*.js" : "test",
+	"source/*.js" : ".",
+	"source/less/*.less" : "test/css -plugins=malta-less"
+}

@@ -1,0 +1,17 @@
+body {
+  font-family: verdana;
+  font-size: 1.5em;
+}
+body pre {
+  background-color: #222;
+  color: #0f0;
+  padding: 1em;
+  font-size: 1.3em;
+  tab-size: 0;
+  font-family: Courier;
+  line-height: 1.2em;
+}
+body a {
+  color: blue;
+  text-decoration: none;
+}

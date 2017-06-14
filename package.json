@@ -1,0 +1,25 @@
+{
+  "name": "instancebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Person.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "malta": "^3.6.0",
+    "malta-browser-refresh": "^1.1.8",
+    "malta-js-obfuscator": "^1.0.6",
+    "malta-js-uglify": "^1.0.1",
+    "malta-mocha": "^1.0.6"
+  },
+  "dependencies": {
+    "chai": "^4.0.2",
+    "sinon": "^2.3.4"
+  }
+}
