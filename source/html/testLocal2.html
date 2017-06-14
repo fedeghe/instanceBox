@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Test localStorage #2 __BUILDNUMBER__</title>
+	<script src="../test/Person.js"></script>
+	<script src="../lib/instanceBox.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<h1>instanceBox</h1>
+	<hr>
+	<div id="target"></div>
+	<hr>
+	<a href="testLocal1.html">back</a> | <a href="../index.html">home</a>
+	<script>
+		FG.instanceBox.base64 = true;
+		FG.instanceBox.use('local');
+		var p = FG.instanceBox.get("Persons/Gabriele"),
+			trg = document.getElementById('target');
+		if (p) {
+			trg.innerHTML = p.sayHello() + '<br>' + p.data.gender;
+		}
+	</script>
+	<hr>
+	<button onclick="FG.instanceBox.clear(); document.location.reload();">cleanup</button>
+</body>
+</html>

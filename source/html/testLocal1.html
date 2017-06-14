@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test#1 __BUILDNUMBER__</title>
+	<title>Test localStorage #1 __BUILDNUMBER__</title>
 	<script src="../test/Person.js"></script>
 	<script src="../lib/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
@@ -12,11 +12,11 @@
 	<h1>instanceBox</h1>
 	<small>Built on <strong>__DATE__</strong></small>
 	<hr>
-	<p>Here we create a instance of a class <i>Person</i> simply defined as:</p>
+	<p>Here we just define a constructor:</p>
 	<code><pre>
 $$../test/Person.js$$
 </pre></code>
-	<p>so in this page we create an instance</p>
+	<p>then we create an instance <i>p</i></p>
 	<code><pre>
 var p = new Person("Gabriele");
 </pre></code>
@@ -28,11 +28,12 @@ FG.instanceBox.set("Persons/Gabriele", p);
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
 	<small>(check the "Persons/Gabriele value stored in localStore")</small>
 	<br>
-	<p>If everything is correct we should be able to <a href="test2.html">verify the persistence</a>.</p>
+	<p>If everything is correct we should be able to <a href="testLocal2.html">verify the persistence</a>.</p>
 	
 	<script>
 		var p = new Person("Gabriele");
 		FG.instanceBox.base64 = true;
+		FG.instanceBox.use('local');
 		FG.instanceBox.set("Persons/Gabriele", p);
 	</script>
 	<hr>

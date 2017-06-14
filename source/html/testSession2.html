@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test#2 __BUILDNUMBER__</title>
+	<title>Test sessionStorage #2 __BUILDNUMBER__</title>
 	<script src="../test/Person.js"></script>
 	<script src="../lib/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
@@ -13,12 +13,18 @@
 	<hr>
 	<div id="target"></div>
 	<hr>
-	<a href="test1.html">back</a> | <a href="../index.html">home</a>
+	<a href="testSession1.html">back</a> | <a href="../index.html">home</a>
 	<script>
 		FG.instanceBox.base64 = true;
-		var p = FG.instanceBox.get("Persons/Gabriele", Person),
+		FG.instanceBox.use('session');
+		var p = FG.instanceBox.get("Persons/Federico"),
 			trg = document.getElementById('target');
-		trg.innerHTML = p.sayHello() + '<br>' + p.data.gender;
+		if (p) {
+			trg.innerHTML = p.sayHello() + '<br>' + p.data.gender;
+		}
+		
 	</script>
+	<hr>
+	<button onclick="FG.instanceBox.clear(); document.location.reload();">cleanup</button>
 </body>
 </html>
