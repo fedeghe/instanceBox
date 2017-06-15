@@ -23,12 +23,13 @@ var p = new Person("Federico");
 	<p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
 <code><pre>
 FG.instanceBox.base64 = true;
+FG.instanceBox.use('session');
 FG.instanceBox.set("Persons/Federico", p);
 </pre></code>
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
-	<small>(check the "Persons/Federico value stored in localStore")</small>
+	<small>(check the "iB-Persons/Federico" value stored in <i>sessionStore</i>)</small>
 	<br>
-	<p>If everything is correct we should be able to <a href="testSession2.html">verify the persistence</a>.</p>
+	<p>If everything is correct we should be able to <a href="testSession2.html">verify the persistence</a> in <i>sessionStorage</i>.</p>
 	
 	<script>
 		var p = new Person("Federico");

@@ -23,12 +23,13 @@ var p = new Person("Gabriele");
 	<p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
 <code><pre>
 FG.instanceBox.base64 = true;
+FG.instanceBox.use('local');
 FG.instanceBox.set("Persons/Gabriele", p);
 </pre></code>
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
-	<small>(check the "Persons/Gabriele value stored in localStore")</small>
+	<small>(check the "iB-Persons/Gabriele" value stored in <i>localStore</i>)</small>
 	<br>
-	<p>If everything is correct we should be able to <a href="testLocal2.html">verify the persistence</a>.</p>
+	<p>If everything is correct we should be able to <a href="testLocal2.html">verify the persistence</a> in <i>localStorage</i>.</p>
 	
 	<script>
 		var p = new Person("Gabriele");
