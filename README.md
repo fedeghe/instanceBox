@@ -3,7 +3,7 @@
 **Why**: I dont care 
 **How**: this module aims to offer a solution
 
-### build and run a pseudo test  
+### build and run test  
 - npm install
 - ./node_modules/malta/src/bin.js build.json (let it run)
-- open index.html 
+- open test/index.html  
