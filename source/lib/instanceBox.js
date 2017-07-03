@@ -1,5 +1,4 @@
-FG = {};
-FG.instanceBox = (function (){
+instanceBox = (function (){
 	"use strict";
 	var storage = localStorage,
 		tools = {
@@ -51,14 +50,15 @@ FG.instanceBox = (function (){
 					w = tools.base64.forth(w);
 				}
 				storage.setItem(getKey(k), w);
+				return true;
 			},
 			getItem : function (k, cls) {
 				var w = storage.getItem(getKey(k)),
-					obj;
-				if (this.base64) w = tools.base64.back(w);
-
-				obj = get(JSON.parse(w));
-				
+					obj = null;
+				if (w) {
+					if (this.base64) w = tools.base64.back(w);
+					obj = get(JSON.parse(w));
+				}
 				return obj;
 			},
 			key : function (n) {
@@ -80,7 +80,6 @@ FG.instanceBox = (function (){
 	function get(fr){
 		var f = eval("(" + fr.constructor + ")"),
 			o = new f(), i,
-
 			fn = eval(fr.constructorName),
 			proto = new fn();
 		
@@ -88,7 +87,6 @@ FG.instanceBox = (function (){
 		for (i in fr.props) {
 			o[i] = tools.encoder.decode(fr.props[i]);
 		}
-		
 		for (i in fr.proto){
 			f.prototype[i] = eval("(" + fr.proto[i] + ")");
 		}
