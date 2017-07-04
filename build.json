@@ -1,9 +1,8 @@
 {
-	"source/lib/instanceBox.js" : "lib",
+	"source/lib/instanceBox.js" : "lib -plugins=malta-js-uglify",
 	"source/lib/instanceBoxMin.js" : "lib",
-	"source/index.html" : ". -plugins=malta-browser-refresh[files:\"*\"] -options=showPath:false",
-	"source/html/*.html" : "testx -plugins=malta-browser-refresh[files:\"*\"]",
-	"source/test/Person.js" : "testx",
+	"source/index.html" : ". -options=showPath:false",
+	"source/html/*.html" : "test",
 	"source/test/Person.js" : "test",
 	"source/*.js" : ".",
 	"source/less/*.less" : "test/css -plugins=malta-less"

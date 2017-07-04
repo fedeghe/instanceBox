@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe("local", function() {
+describe("local/session storage", function() {
 
 
     var sandbox;

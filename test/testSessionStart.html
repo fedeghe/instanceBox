@@ -3,18 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test sessionStorage #1 __BUILDNUMBER__</title>
+	<title>Test sessionStorage #1 1</title>
 	<script src="../test/Person.js"></script>
 	<script src="../lib/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<h1>instanceBox</h1>
-	<small>Built on <strong>__DATE__</strong></small>
+	<small>Built on <strong>4/7/2017</strong></small>
 	<hr>
 	<p>Here we just define a constructor:</p>
 	<code><pre>
-$$../test/Person.js$$
+function Person(name, age, g) {
+    this.name = name;
+    this.data = {
+        age : age || 7,
+        gender : g || 'male'
+    };
+}
+Person.prototype.sayHello = function () {
+    return "Hello from " + this.name;
+}
 </pre></code>
 	<p>then we create an instance <i>p</i></p>
 	<code><pre>
@@ -29,7 +38,7 @@ instanceBox.set("Persons/Federico", p);
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
 	<small>(check the "iB-Persons/Federico" value stored in <i>sessionStore</i>)</small>
 	<br>
-	<p>If everything is correct we should be able to verify the persistence in <i>sessionStorage</i> just loading <a href="testSession2.html">another page</a> and try to get the data.</p>
+	<p>If everything is correct we should be able to verify the persistence in <i>sessionStorage</i> just loading <a href="testSessionCheck.html">another page</a> and try to get the data.</p>
 	
 	<script>
 		var p = new Person("Federico", 40, 'male');

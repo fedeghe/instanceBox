@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test localStorage #1 __BUILDNUMBER__</title>
+	<title>Test sessionStorage #1 __BUILDNUMBER__</title>
 	<script src="../test/Person.js"></script>
 	<script src="../lib/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
@@ -18,24 +18,24 @@ $$../test/Person.js$$
 </pre></code>
 	<p>then we create an instance <i>p</i></p>
 	<code><pre>
-var p = new Person("Gabriele", 7, 'male');
+var p = new Person("Federico", 40, 'male');
 </pre></code>
 	<p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
 <code><pre>
 instanceBox.base64 = true;
-instanceBox.use('local');
-instanceBox.set("Persons/Gabriele", p);
+instanceBox.use('session');
+instanceBox.set("Persons/Federico", p);
 </pre></code>
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
-	<small>(check the "iB-Persons/Gabriele" value stored in <i>localStore</i>)</small>
+	<small>(check the "iB-Persons/Federico" value stored in <i>sessionStore</i>)</small>
 	<br>
-	<p>If everything is correct we should be able to verify the persistence in <i>localStorage</i> just loading <a href="testLocal2.html">another page</a> and try to get the data.</p>
+	<p>If everything is correct we should be able to verify the persistence in <i>sessionStorage</i> just loading <a href="testSessionCheck.html">another page</a> and try to get the data.</p>
 	
 	<script>
-		var p = new Person("Gabriele", 7, 'male');
+		var p = new Person("Federico", 40, 'male');
 		instanceBox.base64 = true;
-		instanceBox.use('local');
-		instanceBox.set("Persons/Gabriele", p);
+		instanceBox.use('session');
+		instanceBox.set("Persons/Federico", p);
 	</script>
 	<hr>
 	<a href="../index.html">home</a>
