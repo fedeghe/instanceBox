@@ -1,11 +1,10 @@
 node_modules
 /lib/*
+/test/*
 .printVersion
 instanceBoxOld.js
 instanceBoxNew.js
 index.html
 load.js
 script.js
-instanceBox.sublime-project
-instanceBox.sublime-workspace
 bower_components

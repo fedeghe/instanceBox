@@ -1,4 +1,9 @@
 {
+	"EXE" : [
+		"rm -rf lib test",
+		"mkdir -p lib",
+		"mkdir -p test/css"
+	],
 	"source/lib/instanceBox.js" : "lib -plugins=malta-js-uglify",
 	"source/lib/instanceBoxMin.js" : "lib",
 	"source/index.html" : ". -options=showPath:false",
