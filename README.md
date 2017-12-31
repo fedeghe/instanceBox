@@ -9,4 +9,4 @@
 ### build and run test  
 - npm install
 - ./node_modules/malta/src/bin.js build.json (let it run)
-- open test/index.html  
+- open index.html  
