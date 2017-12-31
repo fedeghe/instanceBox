@@ -46,9 +46,7 @@ instanceBox = (function (){
 				return k;
 			},
 			removeItem : function (k) {storage.removeItem(getKey(k));},
-			clear : function () {
-				storage.clear();
-			},
+			clear : function () {storage.clear();},
 			length : function () {return storage.length;},
 			use : function (st) {
 				switch (st) {

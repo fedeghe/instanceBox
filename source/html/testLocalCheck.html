@@ -12,8 +12,7 @@
 	<h1>instanceBox</h1>
 	<hr>
 	<p>Here we just try to retrieve all the informations about the stored instance:</p>
-	<code><pre>instanceBox.base64 = true;
-instanceBox.use('local');
+	<code><pre>instanceBox.use('local');
 var p = instanceBox.get("Persons/Gabriele"),
     trg = document.getElementById('target');
 
@@ -28,7 +27,6 @@ trg.innerHTML = p ?
 	<hr>
 	<a href="testLocalStart.html">back</a> | <a href="../index.html">home</a>
 	<script>
-		instanceBox.base64 = true;
 		instanceBox.use('local');
 		var p = instanceBox.get("Persons/Gabriele"),
 			trg = document.getElementById('target');

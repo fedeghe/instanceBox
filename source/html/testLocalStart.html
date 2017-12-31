@@ -15,17 +15,16 @@
 	<p>Here we just define a constructor:</p>
 	<code><pre>
 $$../test/Person.js$$
-</pre></code>
-	<p>then we create an instance <i>p</i></p>
-	<code><pre>
+
+// then we create an instance
 var p = new Person("Gabriele", 7, 'male');
 </pre></code>
-	<p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
+	<p>finally we use <i>instanceBox</i> to store the instance</p>
 <code><pre>
-instanceBox.base64 = true;
 instanceBox.use('local');
 instanceBox.set("Persons/Gabriele", p);
 </pre></code>
+	<p>this is it...</p>
 	<p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
 	<small>(check the "iB-Persons/Gabriele" value stored in <i>localStore</i>)</small>
 	<br>
@@ -33,7 +32,6 @@ instanceBox.set("Persons/Gabriele", p);
 	
 	<script>
 		var p = new Person("Gabriele", 7, 'male');
-		instanceBox.base64 = true;
 		instanceBox.use('local');
 		instanceBox.set("Persons/Gabriele", p);
 	</script>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test localStorage #2 7</title>
+	<title>Test localStorage #2 12</title>
 	<script src="../test/Person.js"></script>
 	<script src="../lib/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
@@ -12,8 +12,7 @@
 	<h1>instanceBox</h1>
 	<hr>
 	<p>Here we just try to retrieve all the informations about the stored instance:</p>
-	<code><pre>instanceBox.base64 = true;
-instanceBox.use('local');
+	<code><pre>instanceBox.use('local');
 var p = instanceBox.get("Persons/Gabriele"),
     trg = document.getElementById('target');
 
@@ -28,7 +27,6 @@ trg.innerHTML = p ?
 	<hr>
 	<a href="testLocalStart.html">back</a> | <a href="../index.html">home</a>
 	<script>
-		instanceBox.base64 = true;
 		instanceBox.use('local');
 		var p = instanceBox.get("Persons/Gabriele"),
 			trg = document.getElementById('target');

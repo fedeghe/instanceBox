@@ -5,7 +5,6 @@
 		"mkdir -p test/css"
 	],
 	"source/lib/instanceBox.js" : "lib -plugins=malta-js-uglify",
-	"source/lib/instanceBoxMin.js" : "lib",
 	"source/index.html" : ". -options=showPath:false",
 	"source/html/*.html" : "test",
 	"source/test/Person.js" : "test",

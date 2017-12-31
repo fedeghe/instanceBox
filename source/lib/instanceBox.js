@@ -43,7 +43,7 @@ instanceBox = (function (){
 			}
 		},
 		store = {
-			base64 : false,
+			base64 : true,
 			setItem : function (k, el) {
 				var w = JSON.stringify(set(el));
 				if (this.base64) {
@@ -96,16 +96,17 @@ instanceBox = (function (){
 	function set (o){
 		var constructorProto = o.constructor.prototype,
 			props = {},
-			proto = {};
+			proto = {},
+			i;
 		try {
 			// owned
-			for (var i in o) {
+			for (i in o) {
 				if (o.hasOwnProperty(i)){
 					props[i] = tools.encoder.encode(o[i]);
 				}
 			}
 			// proto
-			for (var i in constructorProto) {
+			for (i in constructorProto) {
 				proto[i] = constructorProto[i].toString();
 			}
 		} catch(e){

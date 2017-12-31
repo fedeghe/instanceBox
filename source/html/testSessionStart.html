@@ -22,7 +22,6 @@ var p = new Person("Federico", 40, 'male');
 </pre></code>
 	<p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
 <code><pre>
-instanceBox.base64 = true;
 instanceBox.use('session');
 instanceBox.set("Persons/Federico", p);
 </pre></code>
@@ -33,7 +32,6 @@ instanceBox.set("Persons/Federico", p);
 	
 	<script>
 		var p = new Person("Federico", 40, 'male');
-		instanceBox.base64 = true;
 		instanceBox.use('session');
 		instanceBox.set("Persons/Federico", p);
 	</script>
