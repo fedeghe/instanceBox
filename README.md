@@ -8,5 +8,5 @@
 
 ### build and run test  
 - npm install
-- ./node_modules/malta/src/bin.js build.json (let it run)
+- npm run build (let it run)
 - open index.html  

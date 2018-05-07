@@ -7,7 +7,7 @@
 	"source/lib/instanceBox.js" : "lib -plugins=malta-js-uglify",
 	"source/index.html" : ". -options=showPath:false",
 	"source/html/*.html" : "test",
-	"source/test/Person.js" : "test",
-	"source/*.js" : ".",
+	"source/test/*.js" : "test -vars=source/vars.json",
+	"source/*.js" : ". -vars=source/vars.json",
 	"source/less/*.less" : "test/css -plugins=malta-less"
 }
