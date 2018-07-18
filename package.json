@@ -10,17 +10,16 @@
     "build": "./node_modules/malta/src/bin.js build.json",
     "start": "node srv.js"
   },
-  "author": "",
+  "author": "federico.ghedina@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "casperjs": "^1.1.4",
-    "malta": "^3.6.0",
+    "malta": "^3.8.11",
     "malta-browser-refresh": "^1.1.8",
     "malta-js-obfuscator": "^1.0.6",
     "malta-js-uglify": "^1.0.1",
     "malta-less": "^1.0.1",
-    "malta-mocha": "^1.0.6",
-    "phantomjs": "^2.1.7"
+    "malta-mocha": "^1.0.6"
   },
   "dependencies": {
     "chai": "^4.0.2",
