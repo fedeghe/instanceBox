@@ -1,5 +1,3 @@
-[![bitHound Overall Score](https://www.bithound.io/github/fedeghe/instanceBox/badges/score.svg)](https://www.bithound.io/github/fedeghe/instanceBox)  
-
 # instanceBox  
 
 **What**: You want to store javascript instances in the browser  
