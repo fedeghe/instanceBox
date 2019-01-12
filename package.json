@@ -7,9 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "./node_modules/malta/src/bin.js build.json",
-    "serve": "./node_modules/malta/src/bin.js serve.json",
-    "start": "node srv.js",
+    "build": "./node_modules/malta/src/bin.js source/build.json",
+    "clean": "./node_modules/malta/src/bin.js source/clean.json",
     "test": "jest"
   },
   "author": "federico.ghedina@gmail.com",

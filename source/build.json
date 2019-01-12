@@ -1,0 +1,14 @@
+{
+	"EXE" : [
+		"rm -rf lib test",
+		"mkdir -p lib",
+		"mkdir -p test/css test/js"
+	],
+	"source/lib/instanceBox.js" : [
+		"lib -plugins=malta-js-uglify",
+		"test/js"
+	],
+	"source/test/*.html" : "test -plugins=malta-dev-srv[port:9999,folder:\"test\"]",
+	"source/test/*.js" : "test/js -vars=source/vars.json",
+	"source/test/*.less": "test/css -plugins=malta-less"
+}
