@@ -75,11 +75,11 @@ instanceBox = (function (){
 			removeItem : function (k) {storage.removeItem(k); },
 			clear : function () {storage.clear(); },
 			length : function () {return storage.length;},
-			use : function (st) {
-				switch (st) {
-					case 'local': storage = localStorage; break;
-					case 'session': storage = sessionStorage; break;
-				}
+			useLocalStorage : function () {
+				storage = localStorage;
+			},
+			useSessionStorage: function () {
+				storage = sessionStorage;
 			}
 		};
 
@@ -129,7 +129,8 @@ instanceBox = (function (){
 	function getKey(k) {return "iB-" + k;}
 
 	return {
-		use : store.use,
+		useLocalStorage : store.useLocalStorage,
+		useSessionStorage : store.useSessionStorage,
 		base64 : store.base64,
 		set : store.setItem,
 		get : store.getItem,

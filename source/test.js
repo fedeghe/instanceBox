@@ -9,7 +9,7 @@ describe('test localStorage', () => {
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
         await page.evaluate(() => {
             var p = new Person("John", 33, 'male');
-            instanceBox.use('local');
+            instanceBox.useLocalStorage();
             instanceBox.set("Persons/John", p);
         });
     });
@@ -18,7 +18,7 @@ describe('test localStorage', () => {
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
 
         var data = await page.evaluate(() => {
-                instanceBox.use('local');
+            instanceBox.useLocalStorage();
                 return [
                     instanceBox.get("Persons/John"),
                     instanceBox.getSize("Persons/John")
@@ -44,7 +44,7 @@ describe('test sessionStorage', () => {
         await page.evaluate(() => {
             var p = new Person("Moana", 41, 'female');
             p.setSurname('Pozzi');
-            instanceBox.use('session');
+            instanceBox.useSessionStorage();
             instanceBox.set("Persons/Moana", p);
         });
     });
@@ -52,7 +52,7 @@ describe('test sessionStorage', () => {
         // await page.screenshot({ path: 'example.png' });
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
         var data = await page.evaluate(() => {
-                instanceBox.use('session');
+            instanceBox.useSessionStorage();
                 return [
                     instanceBox.get("Persons/Moana"),
                     instanceBox.getSize("Persons/Moana")
