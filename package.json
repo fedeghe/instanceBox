@@ -8,21 +8,21 @@
   },
   "scripts": {
     "build": "./node_modules/malta/src/bin.js build.json",
-    "start": "node srv.js"
+    "serve": "./node_modules/malta/src/bin.js serve.json",
+    "start": "node srv.js",
+    "test": "jest"
   },
   "author": "federico.ghedina@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "casperjs": "^1.1.4",
+    "jest": "^23.6.0",    
     "malta": "^3.8.11",
     "malta-browser-refresh": "^1.1.8",
+    "malta-dev-srv": "^1.0.6",
     "malta-js-obfuscator": "^1.0.6",
     "malta-js-uglify": "^1.0.1",
     "malta-less": "^1.0.1",
-    "malta-mocha": "^1.0.6"
-  },
-  "dependencies": {
-    "chai": "^4.0.2",
-    "sinon": "^2.3.4"
+    "malta-mocha": "^1.0.6",
+    "puppeteer": "^1.11.0"
   }
 }

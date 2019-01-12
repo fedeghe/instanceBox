@@ -3,18 +3,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test sessionStorage #1 __BUILDNUMBER__</title>
-	<script src="../test/Person.js"></script>
-	<script src="../lib/instanceBox.js"></script>
+	<title>Test sessionStorage #1 27</title>
+	<script src="js/Person.js"></script>
+	<script src="js/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<h1>instanceBox</h1>
-	<small>Built on <strong>__DATE__</strong></small>
+	<small>Built on <strong>18/7/2018</strong></small>
 	<hr>
 	<p>Here we just define a constructor:</p>
 	<code><pre>
-$$../test/Person.js$$
+function Person(name, age, g) {
+    this.name = name;
+    this.data = {
+        age : age || 7,
+        gender : g || 'male'
+    };
+}
+Person.prototype.sayHello = function () {
+    return "Hello from " + this.name;
+}
 </pre></code>
 	<p>then we create an instance <i>p</i></p>
 	<code><pre>
@@ -36,6 +45,6 @@ instanceBox.set("Persons/Federico", p);
 		instanceBox.set("Persons/Federico", p);
 	</script>
 	<hr>
-	<a href="../index.html">home</a>
+	<a href="index.html">home</a>
 </body>
 </html>

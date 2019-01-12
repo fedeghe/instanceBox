@@ -3,37 +3,39 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Test sessionStorage #2 25</title>
-	<script src="../test/Person.js"></script>
-	<script src="../lib/instanceBox.js"></script>
+	<title>Test localStorage #2 25</title>
+	<script src="js/Person.js"></script>
+	<script src="js/instanceBox.js"></script>
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<h1>instanceBox</h1>
 	<hr>
 	<p>Here we just try to retrieve all the informations about the stored instance:</p>
-	<code><pre>instanceBox.use('session');
-var p = instanceBox.get("Persons/Federico"),
+	<code><pre>instanceBox.use('local');
+var p = instanceBox.get("Persons/Gabriele"),
     trg = document.getElementById('target');
 
-trg.innerHTML = p ?
-    p.sayHello() + ', ' + p.data.gender:
+trg.innerHTML = p ? 
+    p.sayHello() + ', ' + p.data.gender + ', ' + p.data.age
     :
     "Element not found";
 </pre></code>
 <p>...and the result is:</p>
+
 	<div id="target"></div>
 	<hr>
-	<a href="testSessionStart.html">back</a> | <a href="../index.html">home</a>
+	<a href="testLocalStart.html">back</a> | <a href="index.html">home</a>
 	<script>
-		instanceBox.use('session');
-		var p = instanceBox.get("Persons/Federico"),
+		instanceBox.use('local');
+		var p = instanceBox.get("Persons/Gabriele"),
 			trg = document.getElementById('target');
-        trg.innerHTML = p ?
-            p.sayHello() + ', ' + p.data.gender + ', ' + p.data.age
-            :
-            "Element not found";
-    </script>
+		
+		trg.innerHTML = p ?
+			p.sayHello() + ', ' + p.data.gender + ', ' + p.data.age
+			:
+			"Element not found";
+	</script>
 	<hr>
 	<button onclick="instanceBox.clear(); document.location.reload();">cleanup</button>
 </body>

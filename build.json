@@ -1,13 +1,14 @@
 {
 	"EXE" : [
-		"rm -rf lib test",
+		"rm -rf lib manualtest",
 		"mkdir -p lib",
-		"mkdir -p test/css"
+		"mkdir -p manualtest/css manualtest/js"
 	],
-	"source/lib/instanceBox.js" : "lib -plugins=malta-js-uglify",
-	"source/index.html" : ". -options=showPath:false",
-	"source/html/*.html" : "test",
-	"source/test/*.js" : "test -vars=source/vars.json",
-	"source/*.js" : ". -vars=source/vars.json",
-	"source/less/*.less" : "test/css -plugins=malta-less"
+	"source/lib/instanceBox.js" : [
+		"lib -plugins=malta-js-uglify",
+		"manualtest/js"
+	],
+	"source/manualtest/*.html" : "manualtest",
+	"source/manualtest/*.js" : "manualtest/js -vars=source/vars.json",
+	"source/manualtest/*.less": "manualtest/css -plugins=malta-less"
 }

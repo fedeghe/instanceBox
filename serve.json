@@ -1,0 +1,7 @@
+{
+	"EXE" : [
+		"rm -rf  test",
+		"mkdir test"
+	],
+	"source/test/*.html": "test -plugins=malta-dev-srv[port:9999,folder:\"manualtest\"]"
+}
