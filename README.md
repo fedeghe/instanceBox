@@ -49,7 +49,7 @@ before saving / retrieving from the target storage.
 
 ### something more  
 
-instanceBox offers the following methods:
+`instanceBox` offers the following methods:
 - `useLocalStorage()`  
 sets `localStorage` as container  
 **returns**: `void`
