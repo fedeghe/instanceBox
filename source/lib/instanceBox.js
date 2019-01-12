@@ -50,8 +50,12 @@ instanceBox = (function (){
 				if (this.base64) {
 					w = tools.base64.forth(w);
 				}
-				storage.setItem(key, w);
-				storage.setItem(k + '---size', w.length);
+				try{
+					storage.setItem(key, w);
+					storage.setItem(k + '---size', w.length);
+				} catch(e) {
+					return e;
+				}
 				return true;
 			},
 			getItem : function (k, cls) {
@@ -137,7 +141,6 @@ instanceBox = (function (){
 		remove : store.removeItem,
 		clear : store.clear,
 		length : store.length,
-		key : store.key,
 		getSize: store.getSize
 	};
 }());

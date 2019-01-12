@@ -27,7 +27,7 @@ trg.innerHTML = p ?
 	<hr>
 	<a href="testLocalStart.html">back</a> | <a href="index.html">home</a>
 	<script>
-		instanceBox.use('local');
+		instanceBox.useLocalStorage(); // default one
 		var p = instanceBox.get("Persons/Gabriele"),
 			trg = document.getElementById('target');
 		
