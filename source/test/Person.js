@@ -5,6 +5,9 @@ function Person(name, age, g) {
         gender : g || 'male'
     };
 }
+Person.prototype.setSurname = function (s) {
+    this.surname = s;
+}
 Person.prototype.sayHello = function () {
     return "Hello from " + this.name;
 }

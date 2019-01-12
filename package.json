@@ -14,7 +14,7 @@
   "author": "federico.ghedina@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.6.0",    
+    "jest": "^23.6.0",
     "malta": "^3.8.11",
     "malta-browser-refresh": "^1.1.8",
     "malta-dev-srv": "^1.0.6",

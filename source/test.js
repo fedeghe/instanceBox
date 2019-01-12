@@ -12,18 +12,24 @@ describe('test localStorage', () => {
             instanceBox.use('local');
             instanceBox.set("Persons/John", p);
         });
-        
     });
     test('should return John`s data', async () => {
         // await page.screenshot({path:'example.png'});
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
 
-        var jo = await page.evaluate(() => {
-            instanceBox.use('local');
-            return instanceBox.get("Persons/John")
-        });
+        var data = await page.evaluate(() => {
+                instanceBox.use('local');
+                return [
+                    instanceBox.get("Persons/John"),
+                    instanceBox.getSize("Persons/John")
+                ]
+            }),
+            jo = data[0],
+            size = data[1];
+
         expect(jo.name).toBe('John');
         expect(jo.data.age).toBe(33);
+        expect(size).toBe(588);
         await page.evaluate(() => instanceBox.clear());
         await browser.close();
     });
@@ -37,22 +43,28 @@ describe('test sessionStorage', () => {
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
         await page.evaluate(() => {
             var p = new Person("Moana", 41, 'female');
+            p.setSurname('Pozzi');
             instanceBox.use('session');
             instanceBox.set("Persons/Moana", p);
         });
-
     });
     test('should return Moana`s data', async () => {
         // await page.screenshot({ path: 'example.png' });
         await page.goto('http://localhost:9999', { waitUntil: 'load' });
-
-        var moana = await page.evaluate(() => {
-            instanceBox.use('session');
-            return instanceBox.get("Persons/Moana")
-        });
+        var data = await page.evaluate(() => {
+                instanceBox.use('session');
+                return [
+                    instanceBox.get("Persons/Moana"),
+                    instanceBox.getSize("Persons/Moana")
+                ];
+            }),
+            moana = data[0],
+            size = data[1];
         expect(moana.name).toBe('Moana');
         expect(moana.data.age).toBe(41);
         expect(moana.data.gender).toBe('female');
+
+        expect(size).toBe(648);
         await page.evaluate(() => instanceBox.clear());
         await browser.close();
     });

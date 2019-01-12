@@ -45,11 +45,13 @@ instanceBox = (function (){
 		store = {
 			base64 : true,
 			setItem : function (k, el) {
-				var w = JSON.stringify(set(el));
+				var w = JSON.stringify(pack(el)),
+					key = getKey(k);
 				if (this.base64) {
 					w = tools.base64.forth(w);
 				}
-				storage.setItem(getKey(k), w);
+				storage.setItem(key, w);
+				storage.setItem(k + '---size', w.length);
 				return true;
 			},
 			getItem : function (k, cls) {
@@ -57,9 +59,13 @@ instanceBox = (function (){
 					obj = null;
 				if (w) {
 					if (this.base64) w = tools.base64.back(w);
-					obj = get(JSON.parse(w));
+					obj = unpack(JSON.parse(w));
 				}
 				return obj;
+			},
+			getSize: function (k) {
+				var r = storage.getItem(k + '---size');
+				return r !== null ? +r : null;
 			},
 			key : function (n) {
 				var k = storage.key(n);
@@ -77,7 +83,7 @@ instanceBox = (function (){
 			}
 		};
 
-	function get(fr){
+	function unpack(fr){
 		var f = eval("(" + fr.constructor + ")"),
 			o = new f(), i,
 			fn = eval(fr.constructorName),
@@ -93,7 +99,7 @@ instanceBox = (function (){
 		return o;
 	}
 
-	function set (o){
+	function pack (o){
 		var constructorProto = o.constructor.prototype,
 			props = {},
 			proto = {},
@@ -130,6 +136,7 @@ instanceBox = (function (){
 		remove : store.removeItem,
 		clear : store.clear,
 		length : store.length,
-		key : store.key
+		key : store.key,
+		getSize: store.getSize
 	};
 }());
