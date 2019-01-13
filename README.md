@@ -6,7 +6,8 @@
 
 ### build and run test  
 - npm install
-- npm run build (let it run, it serves on http://localhost:9999)
+- npm run build; let it run, it serves on http://localhost:9999,  
+you can change the port on `source/build.json`
 - npm test (run puppeteer basic tests)
 
 ---
