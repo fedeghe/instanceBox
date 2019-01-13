@@ -2,9 +2,3 @@ node_modules
 /lib/*
 /test
 .printVersion
-instanceBoxOld.js
-instanceBoxNew.js
-index.html
-load.js
-script.js
-bower_components
