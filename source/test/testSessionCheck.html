@@ -17,7 +17,7 @@ var p = instanceBox.get("Persons/Federico"),
     trg = document.getElementById('target');
 
 trg.innerHTML = p ?
-    p.sayHello() + ', ' + p.data.gender:
+    p.sayHello() + ', ' + p.data.gender + ', ' + p.data.age
     :
     "Element not found";
 </pre></code>

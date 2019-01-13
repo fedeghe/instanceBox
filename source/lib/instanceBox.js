@@ -5,24 +5,24 @@ instanceBox = (function (){
 			encoder : {
 				encode : function (el) {
 					switch(typeof el) {
-						case "string": return {nature : "string", val : el};
-						case "number": return {nature : "number", val : el};
-						case "boolean": return {nature : "boolean", val : el};
-						case 'function': return {nature : "function", val : el.toString()};
+						case 'string': return {nature : 'string', val : el};
+						case 'number': return {nature : 'number', val : el};
+						case 'boolean': return {nature : 'boolean', val : el};
+						case 'function': return {nature : 'function', val : el.toString()};
 						case 'object': return {nature : 'object', val : JSON.stringify(el)};
-						case null : return null;
-						default : return null;
+						case null:
+						default: return null;
 					}
 				},
 				decode : function (el) {
-
 					switch(el.nature) {
-						case "string":	
-						case "number":
-						case "boolean": return el.val;
-						case 'function': return eval("(" + el.val + ")");
+						case 'string':	
+						case 'number':
+						case 'boolean': return el.val;
+						case 'function': return eval('(' + el.val + ')');
 						case 'object': return JSON.parse(el.val);
-						case null : 
+						case null:
+						default:
 							return null;
 					}
 				}
@@ -47,12 +47,12 @@ instanceBox = (function (){
 			setItem : function (k, el) {
 				var w = JSON.stringify(pack(el)),
 					key = getKey(k);
-				if (this.base64) {
+				if (store.base64) {
 					w = tools.base64.forth(w);
 				}
 				try{
 					storage.setItem(key, w);
-					storage.setItem(k + '---size', w.length);
+					store.setSize(key, w);
 				} catch(e) {
 					return e;
 				}
@@ -62,13 +62,16 @@ instanceBox = (function (){
 				var w = storage.getItem(getKey(k)),
 					obj = null;
 				if (w) {
-					if (this.base64) w = tools.base64.back(w);
+					if (store.base64) w = tools.base64.back(w);
 					obj = unpack(JSON.parse(w));
 				}
 				return obj;
 			},
+			setSize: function (k, w) {
+				return storage.setItem(k + '---size', w.length);
+			},
 			getSize: function (k) {
-				var r = storage.getItem(k + '---size');
+				var r = storage.getItem(getKey(k) + '---size');
 				return r !== null ? +r : null;
 			},
 			key : function (n) {
@@ -97,7 +100,7 @@ instanceBox = (function (){
 		for (i in fr.props) {
 			o[i] = tools.encoder.decode(fr.props[i]);
 		}
-		for (i in fr.proto){
+		for (i in fr.proto) {
 			f.prototype[i] = eval("(" + fr.proto[i] + ")");
 		}
 		return o;
@@ -130,12 +133,12 @@ instanceBox = (function (){
 		};
 	} 
 	
-	function getKey(k) {return "iB-" + k;}
+	function getKey(k) {return 'iB-' + k;}
 
 	return {
+		base64: function (v) {store.base64 = !!v;},
 		useLocalStorage : store.useLocalStorage,
 		useSessionStorage : store.useSessionStorage,
-		base64 : store.base64,
 		set : store.setItem,
 		get : store.getItem,
 		remove : store.removeItem,
@@ -144,3 +147,7 @@ instanceBox = (function (){
 		getSize: store.getSize
 	};
 }());
+
+typeof module === 'object' &&
+typeof module.exports === 'object' &&
+(module.exports = instanceBox);

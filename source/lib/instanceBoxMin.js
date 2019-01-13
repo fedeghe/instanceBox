@@ -55,7 +55,7 @@ instanceBox = (function (){
 				}
 			}
 		};
-	function getKey(k) {return "iB-" + k;}
+	function getKey(k) {return 'iB-' + k;}
 	return {
 		use : store.use,
 		base64 : store.base64,

@@ -1,9 +1,7 @@
 function Person(name, age, g) {
     this.name = name;
-    this.data = {
-        age : age || 7,
-        gender : g || 'male'
-    };
+    this.age = age || 'unknown';
+    this.gender = g || 'unknown';
 }
 Person.prototype.setSurname = function (s) {
     this.surname = s;
@@ -11,3 +9,6 @@ Person.prototype.setSurname = function (s) {
 Person.prototype.sayHello = function () {
     return "Hello from " + this.name;
 }
+typeof module === 'object' &&
+typeof module.exports === 'object' &&
+(module.exports = Person);

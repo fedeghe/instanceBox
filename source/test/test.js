@@ -15,7 +15,7 @@ describe('test localStorage', () => {
     });
     test('should return John`s data', async () => {
         // await page.screenshot({path:'example.png'});
-        await page.goto('http://localhost:9999', { waitUntil: 'load' });
+        await page.goto('http://localhost:9999/#5', { waitUntil: 'load' });
 
         var data = await page.evaluate(() => {
             instanceBox.useLocalStorage();
@@ -28,8 +28,8 @@ describe('test localStorage', () => {
             size = data[1];
 
         expect(jo.name).toBe('John');
-        expect(jo.data.age).toBe(33);
-        expect(size).toBe(588);
+        expect(jo.age).toBe(33);
+        expect(size).toBe(580);
         await page.evaluate(() => instanceBox.clear());
         await browser.close();
     });
@@ -50,7 +50,7 @@ describe('test sessionStorage', () => {
     });
     test('should return Moana`s data', async () => {
         // await page.screenshot({ path: 'example.png' });
-        await page.goto('http://localhost:9999', { waitUntil: 'load' });
+        await page.goto('http://localhost:9999/#3', { waitUntil: 'load' });
         var data = await page.evaluate(() => {
             instanceBox.useSessionStorage();
                 return [
@@ -61,10 +61,10 @@ describe('test sessionStorage', () => {
             moana = data[0],
             size = data[1];
         expect(moana.name).toBe('Moana');
-        expect(moana.data.age).toBe(41);
-        expect(moana.data.gender).toBe('female');
+        expect(moana.age).toBe(41);
+        expect(moana.gender).toBe('female');
 
-        expect(size).toBe(648);
+        expect(size).toBe(644);
         await page.evaluate(() => instanceBox.clear());
         await browser.close();
     });

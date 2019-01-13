@@ -9,7 +9,7 @@
   "scripts": {
     "build": "./node_modules/malta/src/bin.js source/build.json",
     "clean": "./node_modules/malta/src/bin.js source/clean.json",
-    "test": "jest"
+    "test": "jest -u test/js/test.js"
   },
   "author": "federico.ghedina@gmail.com",
   "license": "ISC",
