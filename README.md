@@ -6,7 +6,7 @@
 
 ### build and run test  
 - npm install
-- npm run build (let it run OR stop it when quiet, serve on http://localhost:9999)
+- npm run build (let it run, it serves on http://localhost:9999)
 - npm test (run puppeteer basic tests)
 
 ---
