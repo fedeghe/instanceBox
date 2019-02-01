@@ -1,7 +1,8 @@
 {
   "name": "instancebox",
-  "version": "1.0.5",
-  "description": "",
+  "version": "1.0.6",
+  "description": "Save instances in local/session storage and bring them back to live",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
