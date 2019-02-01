@@ -1,13 +1,13 @@
 {
   "name": "instancebox",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
-  "main": "Person.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "build": "./node_modules/malta/src/bin.js source/build.json",
+    "build": "./node_modules/malta/src/bin.js source/buildtr.json",
+    "buildev": "./node_modules/malta/src/bin.js source/buildev.json",
     "clean": "./node_modules/malta/src/bin.js source/clean.json",
     "test": "jest -u test/js/test.js"
   },
@@ -18,6 +18,7 @@
     "malta": "^3.8.11",
     "malta-browser-refresh": "^1.1.8",
     "malta-dev-srv": "^1.0.6",
+    "malta-header-comment": "^1.0.5",
     "malta-js-obfuscator": "^1.0.6",
     "malta-js-uglify": "^1.0.1",
     "malta-less": "^1.0.1",

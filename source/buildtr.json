@@ -1,0 +1,13 @@
+{
+	"EXE" : [
+		"rm -rf test",
+		"mkdir -p test/css test/js dist "
+	],
+	"#source/index.js" : [
+		"dist -plugins=malta-js-uglify...malta-header-comment[name:\"source/head.txt\"]",
+		"test/js"
+	],
+	"#source/test/*.html" : "test",
+	"#source/test/*.js" : "test/js",
+	"#source/test/*.less": "test/css -plugins=malta-less"
+}
