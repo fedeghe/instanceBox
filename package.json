@@ -13,7 +13,16 @@
     "test": "jest -u test/js/test.js"
   },
   "author": "federico.ghedina@gmail.com",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fedeghe/instancebox.git"
+  },
+  "keywords": [
+    "save instances",
+    "store instances",
+    "freeze instances"
+  ],
+  "license": "MIT",
   "devDependencies": {
     "jest": "^23.6.0",
     "malta": "^3.8.11",
