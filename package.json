@@ -1,38 +1,38 @@
 {
-  "name": "instancebox",
-  "version": "1.0.9",
-  "description": "Save instances in local/session storage and bring them back to live",
-  "main": "dist/index.js",
-  "directories": {
-    "lib": "lib"
-  },
-  "scripts": {
-    "build": "./node_modules/malta/src/bin.js source/buildtr.json",
-    "buildev": "./node_modules/malta/src/bin.js source/buildev.json",
-    "clean": "./node_modules/malta/src/bin.js source/clean.json",
-    "test": "jest -u test/js/test.js"
-  },
-  "author": "federico.ghedina@gmail.com",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fedeghe/instancebox.git"
-  },
-  "keywords": [
-    "save instances",
-    "store instances",
-    "freeze instances"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "jest": "^23.6.0",
-    "malta": "^3.8.11",
-    "malta-browser-refresh": "^1.1.8",
-    "malta-dev-srv": "^1.0.6",
-    "malta-header-comment": "^1.0.5",
-    "malta-js-obfuscator": "^1.0.6",
-    "malta-js-uglify": "^1.0.1",
-    "malta-less": "^1.0.1",
-    "malta-mocha": "^1.0.6",
-    "puppeteer": "^1.11.0"
-  }
+    "name": "instancebox",
+    "version": "1.0.9",
+    "description": "Save instances in local/session storage and bring them back to live",
+    "main": "dist/index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "build": "./node_modules/malta/src/bin.js source/buildtr.json",
+        "buildev": "./node_modules/malta/src/bin.js source/buildev.json",
+        "clean": "./node_modules/malta/src/bin.js source/clean.json",
+        "test": "jest -u test/js/test.js"
+    },
+    "author": "federico.ghedina@gmail.com",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fedeghe/instancebox.git"
+    },
+    "keywords": [
+        "save instances",
+        "store instances",
+        "freeze instances"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "jest": "^24.9.0",
+        "malta": "^4.0.4",
+        "malta-browser-refresh": "^1.1.8",
+        "malta-dev-srv": "^1.0.6",
+        "malta-header-comment": "^1.0.5",
+        "malta-js-obfuscator": "^1.0.6",
+        "malta-js-uglify": "^1.0.1",
+        "malta-less": "^1.0.1",
+        "malta-mocha": "^1.0.6",
+        "puppeteer": "^1.11.0"
+    }
 }
