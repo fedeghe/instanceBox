@@ -1,13 +1,14 @@
 {
-	"EXE" : [
-		"rm -rf test",
-		"mkdir -p test/css test/js dist "
-	],
-	"source/index.js" : [
-		"dist -plugins=malta-js-uglify",
-		"test/js"
-	],
-	"source/test/*.html" : "test -plugins=malta-dev-srv[port:9999,folder:\"test\"]",
-	"source/test/*.js" : "test/js",
-	"source/test/*.less": "test/css -plugins=malta-less"
+    "EXE": [
+        "rm -rf test",
+        "mkdir -p test/css test/js dist "
+    ],
+    "source/index.js": [
+        "dist -plugins=malta-js-uglify",
+        "test/js"
+    ],
+    "source/test/*.html": "test -plugins=malta-dev-srv[port:9999,folder:\"test\"]",
+    "source/test/*.js": "test/js",
+    "source/cy/*.spec.js": "cypress/integration/js",
+    "source/test/*.less": "test/css -plugins=malta-less"
 }

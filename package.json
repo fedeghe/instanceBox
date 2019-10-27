@@ -10,7 +10,8 @@
         "build": "./node_modules/malta/src/bin.js source/buildtr.json",
         "buildev": "./node_modules/malta/src/bin.js source/buildev.json",
         "clean": "./node_modules/malta/src/bin.js source/clean.json",
-        "test": "jest -u test/js/test.js"
+        "test": "cypress run --browser chrome",
+        "cy:open": "cypress open"
     },
     "author": "federico.ghedina@gmail.com",
     "repository": {
@@ -24,6 +25,7 @@
     ],
     "license": "MIT",
     "devDependencies": {
+        "cypress": "^3.5.0",
         "jest": "^24.9.0",
         "malta": "^4.0.4",
         "malta-browser-refresh": "^1.1.8",
@@ -32,7 +34,6 @@
         "malta-js-obfuscator": "^1.0.6",
         "malta-js-uglify": "^1.0.1",
         "malta-less": "^1.0.1",
-        "malta-mocha": "^1.0.6",
-        "puppeteer": "^1.11.0"
+        "malta-mocha": "^1.0.6"
     }
 }
