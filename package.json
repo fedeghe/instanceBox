@@ -25,9 +25,9 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "cypress": "^3.5.0",
+        "cypress": "3.6.1",
         "jest": "^24.9.0",
-        "malta": "^4.0.4",
+        "malta": "^4.0.6",
         "malta-browser-refresh": "^1.1.8",
         "malta-dev-srv": "^1.0.6",
         "malta-header-comment": "^1.0.5",
