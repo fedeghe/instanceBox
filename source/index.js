@@ -4,6 +4,7 @@ instanceBox = (function (){
 		tools = {
 			encoder : {
 				encode : function (el) {
+                    // el instanceof RegExp ???
 					switch(typeof el) {
 						case 'string': return {nature : 'string', val : el};
 						case 'number': return {nature : 'number', val : el};
