@@ -9,6 +9,6 @@
     ],
     "source/test/*.html": "test -plugins=malta-dev-srv[port:9999,folder:\"test\"]",
     "source/test/*.js": "test/js",
-    "source/cy/*.spec.js": "cypress/integration/js",
+    "source/cy/*.js": "cypress/integration",
     "source/test/*.less": "test/css -plugins=malta-less"
 }

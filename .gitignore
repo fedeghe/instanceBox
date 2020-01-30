@@ -2,3 +2,4 @@
 /test
 .printVersion
 .buildNum.json
+cypress/integration/examples

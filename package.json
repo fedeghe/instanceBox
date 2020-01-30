@@ -25,7 +25,6 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "cypress": "3.6.1",
         "jest": "^24.9.0",
         "malta": "^4.0.6",
         "malta-browser-refresh": "^1.1.8",
@@ -35,5 +34,8 @@
         "malta-js-uglify": "^1.0.1",
         "malta-less": "^1.0.1",
         "malta-mocha": "^1.0.6"
+    },
+    "dependencies": {
+        "cypress": "^3.8.3"
     }
 }
