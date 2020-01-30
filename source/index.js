@@ -69,7 +69,7 @@ instanceBox = (function (){
 				return obj;
 			},
 			setSize: function (k, w) {
-				return storage.setItem(k + '---size', w.length);
+				return storage.setItem(k + '---size', (w.length / 1024).toFixed(2) + 'KB');
 			},
 			getSize: function (k) {
 				var r = storage.getItem(getKey(k) + '---size');
