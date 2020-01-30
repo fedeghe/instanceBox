@@ -1,7 +1,7 @@
 {
     "EXE": [
         "rm -rf test",
-        "mkdir -p test/css test/js dist "
+        "mkdir -p test/css test/js dist cypress/integration"
     ],
     "#source/index.js": [
         "dist -plugins=malta-js-uglify[compress:true,output:{max_line_len:200}]...malta-header-comment[name:\"source/head.txt\"]",

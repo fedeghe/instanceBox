@@ -1,7 +1,7 @@
 {
     "EXE": [
         "rm -rf test",
-        "mkdir -p test/css test/js dist "
+        "mkdir -p test/css test/js dist cypress/integration"
     ],
     "source/index.js": [
         "dist -plugins=malta-js-uglify",
