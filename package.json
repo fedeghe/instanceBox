@@ -7,9 +7,10 @@
         "lib": "lib"
     },
     "scripts": {
-        "build": "./node_modules/malta/src/bin.js source/buildtr.json",
-        "buildev": "./node_modules/malta/src/bin.js source/buildev.json",
-        "clean": "./node_modules/malta/src/bin.js source/clean.json",
+        "build": "malta source/buildtr.json",
+        "buildev": "malta source/buildev.json",
+        "serve": "malta source/serve.json",
+        "clean": "malta source/clean.json",
         "test": "cypress run --browser chrome",
         "cy:open": "cypress open"
     },

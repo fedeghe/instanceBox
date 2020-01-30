@@ -5,10 +5,10 @@
 **How**: this module aims to offer a solution  
 
 ### build and run test  
-- npm install
-- npm run build; let it run, it serves on http://localhost:9999,  
-you can change the port on `source/build.json`
-- npm test (run puppeteer basic tests)
+- `yarn`
+- `yarn build`
+- `yarn serve` // runs on http://localhost:9999
+- `yarn test`  // runs 2 basic cypress tests
 
 ---
 

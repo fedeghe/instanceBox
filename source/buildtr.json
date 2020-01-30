@@ -1,13 +1,14 @@
 {
-	"EXE" : [
-		"rm -rf test",
-		"mkdir -p test/css test/js dist "
-	],
-	"#source/index.js" : [
-		"dist -plugins=malta-js-uglify[compress:true,output:{max_line_len:200}]...malta-header-comment[name:\"source/head.txt\"]",
-		"test/js"
-	],
-	"#source/test/*.html" : "test",
-	"#source/test/*.js" : "test/js",
-	"#source/test/*.less": "test/css -plugins=malta-less"
+    "EXE": [
+        "rm -rf test",
+        "mkdir -p test/css test/js dist "
+    ],
+    "#source/index.js": [
+        "dist -plugins=malta-js-uglify[compress:true,output:{max_line_len:200}]...malta-header-comment[name:\"source/head.txt\"]",
+        "test/js"
+    ],
+    "#source/test/*.html": "test",
+    "#source/test/*.js": "test/js",
+    "#source/cy/*.js": "cypress/integration",
+    "#source/test/*.less": "test/css -plugins=malta-less"
 }
