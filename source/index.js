@@ -6,11 +6,11 @@ instanceBox = (function (){
 				encode : function (el) {
                     // el instanceof RegExp ???
 					switch(typeof el) {
-						case 'string': return {nature : 'string', val : el};
-						case 'number': return {nature : 'number', val : el};
-						case 'boolean': return {nature : 'boolean', val : el};
-						case 'function': return {nature : 'function', val : el.toString()};
-						case 'object': return {nature : 'object', val : JSON.stringify(el)};
+						case 'string': return {nature : 'string', val : el, constructorName: el.constructor.name};
+						case 'number': return {nature : 'number', val : el, constructorName: el.constructor.name};
+						case 'boolean': return {nature : 'boolean', val : el, constructorName: el.constructor.name};
+						case 'function': return {nature : 'function', val : el.toString(), constructorName: el.constructor.name};
+						case 'object': return {nature : 'object', val : JSON.stringify(el), constructorName: el.constructor.name};
 						case null:
 						default: return null;
 					}
@@ -46,7 +46,7 @@ instanceBox = (function (){
 		store = {
 			base64 : true,
 			setItem : function (k, el) {
-				var w = JSON.stringify(pack(el)),
+				var w = JSON.stringify(pack(el, k)),
 					key = getKey(k);
 				if (store.base64) {
 					w = tools.base64.forth(w);
@@ -59,11 +59,11 @@ instanceBox = (function (){
 				}
 				return true;
 			},
-			getItem : function (k, cls) {
+			getItem : function (k) {
 				var w = storage.getItem(getKey(k)),
 					obj = null;
 				if (w) {
-					if (store.base64) w = tools.base64.back(w);
+					if (store.base64) w = tools.base64.back(w, k);
 					obj = unpack(JSON.parse(w));
 				}
 				return obj;
@@ -91,34 +91,47 @@ instanceBox = (function (){
 			}
 		};
 
-	function unpack(fr){
+	function unpack(fr, key){
 		var f = eval("(" + fr.constructor + ")"),
-			o = new f(), i,
+            o = new f(), i,
+            j = 0,
 			fn = eval(fr.constructorName),
 			proto = new fn();
 		
 		Object.setPrototypeOf(o, proto);
 		for (i in fr.props) {
-			o[i] = tools.encoder.decode(fr.props[i]);
+            if (canDecoded(fr.props[i]) ){
+                o[i] = tools.encoder.decode(fr.props[i]);
+            }
 		}
 		for (i in fr.proto) {
 			f.prototype[i] = eval("(" + fr.proto[i] + ")");
-		}
+        }
 		return o;
-	}
-
-	function pack (o){
+    }
+    function canDecoded(el) {
+        return el.constructorName.match(/boolean|number|date|string|object|array/i);
+    }
+    function canEncoded(el) {
+        return el.constructor.name.match(/boolean|number|date|string|object|array/i);
+    }
+	function pack (o, key){
 		var constructorProto = o.constructor.prototype,
 			props = {},
-			proto = {},
+            proto = {},
+            j = 0,
 			i;
 		try {
 			// owned
 			for (i in o) {
 				if (o.hasOwnProperty(i)){
-					props[i] = tools.encoder.encode(o[i]);
+                    console.log('-----')
+                    console.log(i)
+                    if(canEncoded(o[i])){
+                        props[i] = tools.encoder.encode(o[i]);
+                    }
 				}
-			}
+            }
 			// proto
 			for (i in constructorProto) {
 				proto[i] = constructorProto[i].toString();
