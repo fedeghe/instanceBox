@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test localStorage #1 38</title>
+    <script src="js/Objects.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        var p = new Person("Gabriele", 7, 'male');
+        instanceBox.useLocalStorage(); // default one
+        instanceBox.set("Persons/Gabriele", p);
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>instanceBox</h1>
+    <small>Built on <strong>__DATE__</strong></small>
+    <hr>
+    <p>Here we just define a constructor:</p>
+    <code><pre>
+function Document(name, age, gender) {
+    this.id = [name[0], age, gender, ~~(1E6 * Math.random())].join('')
+}
+
+function Person(name, age, g) {
+    this.name = name;
+    this.age = age || 'unknown';
+    this.gender = g || 'unknown';
+    this.doc = new Document(name,  age, g)
+}
+Person.prototype.getDocumentId = function () {
+    return this.doc.id;
+}
+
+// then we create an instance
+var p = new Person("Gabriele", 7, 'male');
+</pre></code>
+    <p>finally we use <i>instanceBox</i> to store the instance</p>
+    <code><pre>
+instanceBox.use('local');
+instanceBox.set("Persons/Gabriele", p);
+</pre></code>
+    <p>this is it...</p>
+    <p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
+    <small>(check the "iB-Persons/Gabriele" value stored in <i>localStore</i>)</small>
+    <br>
+    <p>If everything is correct we should be able to verify the persistence in <i>localStorage</i> just loading <a
+            href="testDeepCheck.html" class="check">another page</a> and try to get the data.</p>
+    <hr>
+    <a href="index.html">home</a>
+</body>
+
+</html>
