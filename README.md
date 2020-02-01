@@ -4,6 +4,9 @@
 **Why**: I dont care  
 **How**: this module aims to offer a solution  
 
+# Important  
+This is a draft module, does not work when the instance references other objects within. Looks like it is not easy to have that but I'm working on that.
+
 ### build and run test  
 - `yarn`
 - `yarn build`
@@ -19,6 +22,9 @@ In page _one.html_:
 function Person(name, age){
     this.name = name;
     this.age = age;
+    
+    // not yet
+    // this.doc = new Doc(this.name. this.age)
 }
 Person.prototype.sayHello = function () {
     return 'Hi, my name is ' + this.name;
