@@ -8,6 +8,7 @@
     <script src="js/Person.js"></script>
     <script src="js/index.js"></script>
     <script>
+        instanceBox.register('Person', Person);
         var p = new Person("Gabriele", 7, 'male');
         p.setSurname('Ghedina');
         instanceBox.useLocalStorage(); // default one
@@ -34,12 +35,14 @@ Person.prototype.sayHello = function () {
     return "Hello from " + this.name;
 }
 
+instanceBox.register('Person', Person);
+
 // then we create an instance
 var p = new Person("Gabriele", 7, 'male');
 </pre></code>
     <p>finally we use <i>instanceBox</i> to store the instance</p>
     <code><pre>
-instanceBox.use('local');
+instanceBox.useLocalStorage();
 instanceBox.set("Persons/Gabriele", p);
 </pre></code>
     <p>this is it...</p>

@@ -28,6 +28,8 @@ trg.innerHTML = p
     <hr>
     <a href="testDeepStart.html">back</a> | <a href="index.html">home</a>
     <script>
+        instanceBox.register('Doc', Doc);
+        instanceBox.register('Person', Person);
         instanceBox.useLocalStorage(); // default one
 
         var p = instanceBox.get("Persons/Gabriele"),
