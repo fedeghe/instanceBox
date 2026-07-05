@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Test localStorage #2 25</title>
-    <script src="js/Person.js"></script>
+    <script src="js/Objects.js"></script>
     <script src="js/index.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,26 +18,24 @@
 var p = instanceBox.get("Persons/Gabriele"),
     trg = document.getElementById('target');
 
-trg.innerHTML = p ? 
-    p.sayHello() + ', ' + p.gender + ', ' + p.age
-    :
-    "Element not found";
+trg.innerHTML = p
+    ? p.getDocumentId()
+    : "Element not found";
 </pre></code>
     <p>...and the result is:</p>
 
     <div id="target"></div>
     <hr>
-    <a href="testLocalStart.html">back</a> | <a href="index.html">home</a>
+    <a href="testDeepStart.html">back</a> | <a href="index.html">home</a>
     <script>
         instanceBox.useLocalStorage(); // default one
 
         var p = instanceBox.get("Persons/Gabriele"),
             trg = document.getElementById('target');
 
-        trg.innerHTML = p ?
-            p.sayHello() + ', ' + p.gender + ', ' + p.age
-            :
-            "Element not found";
+        trg.innerHTML = p
+            ? p.getDocumentId()
+            : "Element not found";
     </script>
     <hr>
     <button onclick="instanceBox.clear(); document.location.reload();">cleanup</button>

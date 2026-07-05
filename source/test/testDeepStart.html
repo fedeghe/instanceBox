@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Test localStorage #1 38</title>
-    <script src="js/Person.js"></script>
+    <script src="js/Objects.js"></script>
     <script src="js/index.js"></script>
     <script>
         var p = new Person("Gabriele", 7, 'male');
-        p.setSurname('Ghedina');
         instanceBox.useLocalStorage(); // default one
         instanceBox.set("Persons/Gabriele", p);
     </script>
@@ -18,20 +17,22 @@
 
 <body>
     <h1>instanceBox</h1>
-    <small>Built on <strong>18/7/2018</strong></small>
+    <small>Built on <strong>__DATE__</strong></small>
     <hr>
     <p>Here we just define a constructor:</p>
     <code><pre>
+function Document(name, age, gender) {
+    this.id = [name[0], age, gender, ~~(1E6 * Math.random())].join('')
+}
+
 function Person(name, age, g) {
     this.name = name;
     this.age = age || 'unknown';
-    this.gender = g || 'unknown'
+    this.gender = g || 'unknown';
+    this.doc = new Document(name,  age, g)
 }
-Person.prototype.setSurname = function (s) {
-    this.surname = s;
-}
-Person.prototype.sayHello = function () {
-    return "Hello from " + this.name;
+Person.prototype.getDocumentId = function () {
+    return this.doc.id;
 }
 
 // then we create an instance
@@ -47,7 +48,7 @@ instanceBox.set("Persons/Gabriele", p);
     <small>(check the "iB-Persons/Gabriele" value stored in <i>localStore</i>)</small>
     <br>
     <p>If everything is correct we should be able to verify the persistence in <i>localStorage</i> just loading <a
-            href="testLocalCheck.html" class="check">another page</a> and try to get the data.</p>
+            href="testDeepCheck.html" class="check">another page</a> and try to get the data.</p>
     <hr>
     <a href="index.html">home</a>
 </body>

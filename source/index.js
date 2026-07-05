@@ -4,25 +4,24 @@ instanceBox = (function (){
 		tools = {
 			encoder : {
 				encode : function (el) {
-                    // el instanceof RegExp ???
+					if (el === null) return {nature : 'object', val : 'null', constructorName: 'Object'};
 					switch(typeof el) {
 						case 'string': return {nature : 'string', val : el, constructorName: el.constructor.name};
 						case 'number': return {nature : 'number', val : el, constructorName: el.constructor.name};
 						case 'boolean': return {nature : 'boolean', val : el, constructorName: el.constructor.name};
 						case 'function': return {nature : 'function', val : el.toString(), constructorName: el.constructor.name};
 						case 'object': return {nature : 'object', val : JSON.stringify(el), constructorName: el.constructor.name};
-						case null:
 						default: return null;
 					}
 				},
 				decode : function (el) {
 					switch(el.nature) {
-						case 'string':	
+						case 'string':
 						case 'number':
 						case 'boolean': return el.val;
 						case 'function': return eval('(' + el.val + ')');
 						case 'object': return JSON.parse(el.val);
-						case null:
+						case 'instance': return unpack(el.val);
 						default:
 							return null;
 					}
@@ -69,7 +68,7 @@ instanceBox = (function (){
 				return obj;
 			},
 			setSize: function (k, w) {
-				return storage.setItem(k + '---size', (w.length / 1024).toFixed(2) + 'KB');
+				return storage.setItem(k + '---size', w.length);
 			},
 			getSize: function (k) {
 				var r = storage.getItem(getKey(k) + '---size');
@@ -77,12 +76,21 @@ instanceBox = (function (){
 			},
 			key : function (n) {
 				var k = storage.key(n);
-				k = k.replace(/$iB-/, ''); 
+				k = k.replace(/^iB-/, '');
 				return k;
 			},
-			removeItem : function (k) {storage.removeItem(k); },
+			removeItem : function (k) { storage.removeItem(getKey(k)); },
 			clear : function () {storage.clear(); },
-			length : function () {return storage.length;},
+			length : function () {
+				var count = 0, i, k;
+				for (i = 0; i < storage.length; i++) {
+					k = storage.key(i);
+					if (k && k.indexOf('iB-') === 0 && k.indexOf('---size') < 0) {
+						count++;
+					}
+				}
+				return count;
+			},
 			useLocalStorage : function () {
 				storage = localStorage;
 			},
@@ -92,46 +100,54 @@ instanceBox = (function (){
 		};
 
 	function unpack(fr, key){
-		var f = eval("(" + fr.constructor + ")"),
-            o = new f(), i,
-            j = 0,
-			fn = eval(fr.constructorName),
-			proto = new fn();
-		
-		Object.setPrototypeOf(o, proto);
+		var fn = eval(fr.constructorName),
+			proto = fn.prototype,
+			o = Object.create(proto),
+			i;
+
 		for (i in fr.props) {
-            if (canDecoded(fr.props[i]) ){
-                o[i] = tools.encoder.decode(fr.props[i]);
-            }
+			if (canDecoded(fr.props[i])) {
+				o[i] = tools.encoder.decode(fr.props[i]);
+			}
 		}
 		for (i in fr.proto) {
-			f.prototype[i] = eval("(" + fr.proto[i] + ")");
-        }
+			fn.prototype[i] = eval("(" + fr.proto[i] + ")");
+		}
 		return o;
-    }
-    function canDecoded(el) {
-        return el.constructorName.match(/boolean|number|date|string|object|array/i);
-    }
-    function canEncoded(el) {
-        return el.constructor.name.match(/boolean|number|date|string|object|array/i);
-    }
+	}
+	function canDecoded(el) {
+		return el && (el.nature === 'instance' || /^(Boolean|Number|Date|String|Object|Array|RegExp|Function)$/.test(el.constructorName));
+	}
 	function pack (o, key){
 		var constructorProto = o.constructor.prototype,
 			props = {},
-            proto = {},
-            j = 0,
-			i;
+			proto = {},
+			i, val, ctorName;
 		try {
 			// owned
 			for (i in o) {
-				if (o.hasOwnProperty(i)){
-                    console.log('-----')
-                    console.log(i)
-                    if(canEncoded(o[i])){
-                        props[i] = tools.encoder.encode(o[i]);
-                    }
+				if (o.hasOwnProperty(i)) {
+					val = o[i];
+					if (val === null || val === undefined) {
+						// skip non-serializable
+					} else if (typeof val === 'function') {
+						props[i] = tools.encoder.encode(val);
+					} else if (typeof val !== 'object') {
+						props[i] = tools.encoder.encode(val);
+					} else {
+						ctorName = val.constructor.name;
+						if (/^(Object|Array|Date|RegExp)$/.test(ctorName)) {
+							props[i] = tools.encoder.encode(val);
+						} else {
+							props[i] = {
+								nature: 'instance',
+								val: pack(val),
+								constructorName: ctorName
+							};
+						}
+					}
 				}
-            }
+			}
 			// proto
 			for (i in constructorProto) {
 				proto[i] = constructorProto[i].toString();
@@ -158,7 +174,8 @@ instanceBox = (function (){
 		remove : store.removeItem,
 		clear : store.clear,
 		length : store.length,
-		getSize: store.getSize
+		getSize: store.getSize,
+		key: store.key
 	};
 }());
 
