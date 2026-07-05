@@ -27,6 +27,8 @@ Person.prototype.setSurname = function (s) {
 Person.prototype.sayHello = function () {
     return "Hello from " + this.name;
 }
+
+instanceBox.register('Person', Person);
 </pre></code>
     <p>then we create an instance <i>p</i></p>
     <code><pre>
@@ -34,7 +36,7 @@ var p = new Person("Federico", 40, 'male');
 </pre></code>
     <p>and after activate encoding (optional), we use <i>instanceBox</i> to store the instance</p>
     <code><pre>
-instanceBox.use('session');
+instanceBox.useSessionStorage();
 instanceBox.set("Persons/Federico", p);
 </pre></code>
     <p>now to test it, it`s enough to load another page and try to retrieve the instance</p>
@@ -44,6 +46,7 @@ instanceBox.set("Persons/Federico", p);
             href="testSessionCheck.html" class="check">another page</a> and try to get the data.</p>
 
     <script>
+        instanceBox.register('Person', Person);
         var p = new Person("Federico", 40, 'male');
         instanceBox.useSessionStorage();
         instanceBox.set("Persons/Federico", p);

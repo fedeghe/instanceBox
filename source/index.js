@@ -1,31 +1,27 @@
 instanceBox = (function (){
 	"use strict";
 	var storage = localStorage,
+		registry = {},
+		globalScope = Function('return this')(),
 		tools = {
-			encoder : {
-				encode : function (el) {
-					if (el === null) return {nature : 'object', val : 'null', constructorName: 'Object'};
-					switch(typeof el) {
-						case 'string': return {nature : 'string', val : el, constructorName: el.constructor.name};
-						case 'number': return {nature : 'number', val : el, constructorName: el.constructor.name};
-						case 'boolean': return {nature : 'boolean', val : el, constructorName: el.constructor.name};
-						case 'function': return {nature : 'function', val : el.toString(), constructorName: el.constructor.name};
-						case 'object': return {nature : 'object', val : JSON.stringify(el), constructorName: el.constructor.name};
-						default: return null;
-					}
-				},
-				decode : function (el) {
-					switch(el.nature) {
-						case 'string':
-						case 'number':
-						case 'boolean': return el.val;
-						case 'function': return eval('(' + el.val + ')');
-						case 'object': return JSON.parse(el.val);
-						case 'instance': return unpack(el.val);
-						default:
-							return null;
-					}
+			serialize : function (val) {
+				if (val === null || val === undefined) return val;
+				var type = typeof val;
+				if (type !== 'object') return val;
+				if (Array.isArray(val)) return val;
+				if (val instanceof Date) return { __type: 'Date', val: val.toISOString() };
+				if (val instanceof RegExp) return { __type: 'RegExp', val: val.toString() };
+				var ctorName = val.constructor.name;
+				if (ctorName === 'Object') return val;
+				return { __instance__: true, constructorName: ctorName, data: pack(val) };
+			},
+			deserialize : function (val) {
+				if (val && typeof val === 'object') {
+					if (val.__type === 'Date') return new Date(val.val);
+					if (val.__type === 'RegExp') return new RegExp(val.val);
+					if (val.__instance__) return unpack(val.data);
 				}
+				return val;
 			},
 			base64 : {
 				forth : function (str) {
@@ -45,7 +41,7 @@ instanceBox = (function (){
 		store = {
 			base64 : true,
 			setItem : function (k, el) {
-				var w = JSON.stringify(pack(el, k)),
+				var w = JSON.stringify(pack(el)),
 					key = getKey(k);
 				if (store.base64) {
 					w = tools.base64.forth(w);
@@ -62,7 +58,7 @@ instanceBox = (function (){
 				var w = storage.getItem(getKey(k)),
 					obj = null;
 				if (w) {
-					if (store.base64) w = tools.base64.back(w, k);
+					if (store.base64) w = tools.base64.back(w);
 					obj = unpack(JSON.parse(w));
 				}
 				return obj;
@@ -76,8 +72,7 @@ instanceBox = (function (){
 			},
 			key : function (n) {
 				var k = storage.key(n);
-				k = k.replace(/^iB-/, '');
-				return k;
+				return k ? k.replace(/^iB-/, '') : null;
 			},
 			removeItem : function (k) { storage.removeItem(getKey(k)); },
 			clear : function () {storage.clear(); },
@@ -99,73 +94,37 @@ instanceBox = (function (){
 			}
 		};
 
-	function unpack(fr, key){
-		var fn = eval(fr.constructorName),
+	function unpack(fr){
+		var fn = registry[fr.constructorName] || globalScope[fr.constructorName],
 			proto = fn.prototype,
 			o = Object.create(proto),
 			i;
 
 		for (i in fr.props) {
-			if (canDecoded(fr.props[i])) {
-				o[i] = tools.encoder.decode(fr.props[i]);
-			}
-		}
-		for (i in fr.proto) {
-			fn.prototype[i] = eval("(" + fr.proto[i] + ")");
+			o[i] = tools.deserialize(fr.props[i]);
 		}
 		return o;
 	}
-	function canDecoded(el) {
-		return el && (el.nature === 'instance' || /^(Boolean|Number|Date|String|Object|Array|RegExp|Function)$/.test(el.constructorName));
-	}
-	function pack (o, key){
-		var constructorProto = o.constructor.prototype,
-			props = {},
-			proto = {},
-			i, val, ctorName;
-		try {
-			// owned
-			for (i in o) {
-				if (o.hasOwnProperty(i)) {
-					val = o[i];
-					if (val === null || val === undefined) {
-						// skip non-serializable
-					} else if (typeof val === 'function') {
-						props[i] = tools.encoder.encode(val);
-					} else if (typeof val !== 'object') {
-						props[i] = tools.encoder.encode(val);
-					} else {
-						ctorName = val.constructor.name;
-						if (/^(Object|Array|Date|RegExp)$/.test(ctorName)) {
-							props[i] = tools.encoder.encode(val);
-						} else {
-							props[i] = {
-								nature: 'instance',
-								val: pack(val),
-								constructorName: ctorName
-							};
-						}
-					}
-				}
+
+	function pack (o){
+		var props = {},
+			i;
+		for (i in o) {
+			if (o.hasOwnProperty(i)) {
+				if (typeof o[i] === 'function') continue;
+				props[i] = tools.serialize(o[i]);
 			}
-			// proto
-			for (i in constructorProto) {
-				proto[i] = constructorProto[i].toString();
-			}
-		} catch(e){
-			return false;
 		}
 		return {
-			constructor : o.constructor.toString(),
 			constructorName : o.constructor.name,
-			props : props,
-			proto : proto
+			props : props
 		};
-	} 
-	
+	}
+
 	function getKey(k) {return 'iB-' + k;}
 
 	return {
+		register: function (name, constructor) { registry[name] = constructor; },
 		base64: function (v) {store.base64 = !!v;},
 		useLocalStorage : store.useLocalStorage,
 		useSessionStorage : store.useSessionStorage,

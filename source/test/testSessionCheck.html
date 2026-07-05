@@ -28,6 +28,7 @@ trg.innerHTML = p ?
     <hr>
     <a href="testSessionStart.html">back</a> | <a href="index.html">home</a>
     <script>
+        instanceBox.register('Person', Person);
         instanceBox.useSessionStorage();
         var p = instanceBox.get("Persons/Federico"),
             trg = document.getElementById('target');

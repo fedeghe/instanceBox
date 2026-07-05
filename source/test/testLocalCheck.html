@@ -29,6 +29,7 @@ trg.innerHTML = p ?
     <hr>
     <a href="testLocalStart.html">back</a> | <a href="index.html">home</a>
     <script>
+        instanceBox.register('Person', Person);
         instanceBox.useLocalStorage(); // default one
 
         var p = instanceBox.get("Persons/Gabriele"),

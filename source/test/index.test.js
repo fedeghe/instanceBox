@@ -61,6 +61,9 @@ describe('instanceBox', () => {
 
     beforeEach(() => {
         instanceBox = loadInstanceBox();
+        instanceBox.register('Person', Person);
+        instanceBox.register('Doc', Doc);
+        instanceBox.register('DeepPerson', DeepPerson);
     });
 
     test('localStorage: save and retrieve a shallow instance', () => {

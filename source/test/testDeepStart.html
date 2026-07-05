@@ -8,6 +8,8 @@
     <script src="js/Objects.js"></script>
     <script src="js/index.js"></script>
     <script>
+        instanceBox.register('Doc', Doc);
+        instanceBox.register('Person', Person);
         var p = new Person("Gabriele", 7, 'male');
         instanceBox.useLocalStorage(); // default one
         instanceBox.set("Persons/Gabriele", p);
@@ -21,26 +23,34 @@
     <hr>
     <p>Here we just define a constructor:</p>
     <code><pre>
-function Document(name, age, gender) {
-    this.id = [name[0], age, gender, ~~(1E6 * Math.random())].join('')
+function Doc(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+}
+Doc.prototype.show = function () {
+    return [this.name[0], this.age, this.gender, '__YEAR__'].join('')
 }
 
 function Person(name, age, g) {
     this.name = name;
     this.age = age || 'unknown';
     this.gender = g || 'unknown';
-    this.doc = new Document(name,  age, g)
+    this.doc = new Doc(name, age, g)
 }
 Person.prototype.getDocumentId = function () {
-    return this.doc.id;
+    return this.doc.show();
 }
+
+instanceBox.register('Doc', Doc);
+instanceBox.register('Person', Person);
 
 // then we create an instance
 var p = new Person("Gabriele", 7, 'male');
 </pre></code>
     <p>finally we use <i>instanceBox</i> to store the instance</p>
     <code><pre>
-instanceBox.use('local');
+instanceBox.useLocalStorage();
 instanceBox.set("Persons/Gabriele", p);
 </pre></code>
     <p>this is it...</p>
