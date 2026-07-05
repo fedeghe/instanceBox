@@ -11,8 +11,7 @@
         "buildev": "malta source/buildev.json",
         "serve": "malta source/serve.json",
         "clean": "malta source/clean.json",
-        "test": "cypress run --browser chrome",
-        "cy:open": "cypress open"
+        "test": "jest --roots test"
     },
     "author": "federico.ghedina@gmail.com",
     "repository": {
@@ -26,10 +25,9 @@
     ],
     "license": "MIT",
     "devDependencies": {
-        "cypress": "^3.8.3",
         "jest": "^24.9.0",
-        "malta": "^4.0.6",
-        "malta-browser-refresh": "^1.1.8",
+        "malta": "^4.2.7",
+        "malta-browser-refresh": "^1.2.16",
         "malta-dev-srv": "^1.0.6",
         "malta-header-comment": "^1.0.5",
         "malta-js-obfuscator": "^1.0.6",
