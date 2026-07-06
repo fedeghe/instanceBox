@@ -11,7 +11,8 @@
         "buildev": "malta source/buildev.json",
         "serve": "malta source/serve.json",
         "clean": "malta source/clean.json",
-        "test": "jest --roots test"
+        "test": "jest --roots test",
+        "cover": "npm run test -- --coverage"
     },
     "author": "federico.ghedina@gmail.com",
     "repository": {

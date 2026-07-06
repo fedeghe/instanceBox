@@ -1,4 +1,7 @@
+[![codecov](https://codecov.io/gh/fedeghe/instanceBox/graph/badge.svg?token=fZSG4QuRBp)](https://codecov.io/gh/fedeghe/instanceBox)
+
 # instanceBox
+
 
 **What**: You want to store JavaScript instances (with their methods) in the browser
 **Why**: You don't want to lose state and behavior when navigating pages or reloading

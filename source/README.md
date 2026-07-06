@@ -28,7 +28,3 @@ Once the root `test` folder is build run:
 ```
 > npm test
 ```
-or
-```
-> npm run cover
-```
