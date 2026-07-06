@@ -3,3 +3,4 @@
 .printVersion
 .buildNum.json
 cypress/*
+/coverage

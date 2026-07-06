@@ -1,30 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
-let localStorage, sessionStorage, btoa, atob;
-
-function createStorage() {
-    const store = {};
-    return {
-        getItem: (k) => (k in store ? store[k] : null),
-        setItem: (k, v) => (store[k] = String(v)),
-        removeItem: (k) => delete store[k],
-        clear: () => { for (const k in store) delete store[k]; },
-        key: (i) => Object.keys(store)[i] || null,
-        get length() { return Object.keys(store).length; }
-    };
-}
-
-function loadInstanceBox() {
-    localStorage = createStorage();
-    sessionStorage = createStorage();
-    btoa = (str) => Buffer.from(str, 'binary').toString('base64');
-    atob = (str) => Buffer.from(str, 'base64').toString('binary');
-    const code = fs.readFileSync(path.join(__dirname, '../../dist/index.js'), 'utf8');
-    eval(code);
-    return instanceBox;
-}
-
 function Person(name, age, g) {
     this.name = name;
     this.age = age || 'unknown';
@@ -56,11 +29,14 @@ DeepPerson.prototype.getDocumentId = function () {
     return this.doc.show();
 };
 
-describe('instanceBox', () => {
-    let instanceBox;
+const instanceBox = require('../../source/index.js');
 
+describe('instanceBox', () => {
     beforeEach(() => {
-        instanceBox = loadInstanceBox();
+        global.localStorage.clear();
+        global.sessionStorage.clear();
+        instanceBox.useLocalStorage();
+        instanceBox.base64(true);
         instanceBox.register('Person', Person);
         instanceBox.register('Doc', Doc);
         instanceBox.register('DeepPerson', DeepPerson);

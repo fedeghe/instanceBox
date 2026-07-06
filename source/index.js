@@ -138,8 +138,6 @@ instanceBox = (function (){
 	};
 }());
 
-// doesn't make any sense now
-//
-// typeof module === 'object' &&
-// typeof module.exports === 'object' &&
-// (module.exports = instanceBox);
+typeof module === 'object' &&
+typeof module.exports === 'object' &&
+(module.exports = instanceBox);
