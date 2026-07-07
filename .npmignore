@@ -1,5 +1,9 @@
 /node_modules
 /test
 /source
+/coverage
+/scripts
 .printVersion
+objects.js
+index.html
 
